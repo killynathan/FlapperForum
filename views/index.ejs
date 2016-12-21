@@ -8,6 +8,14 @@
 	<script src="/javascripts/angularApp.js"></script>
 </head>
 <body ng-app="flapperNews">
+	<nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
+			<ul class="nav navbar-nav">
+		      <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+		      <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+		      <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+		      <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+		    </ul>
+	</nav>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">

@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport'); 
 
 require('./models/Posts');
 require('./models/Comments');
+require('./models/Users');
 //mongoose.connect('mongodb://localhost/27017/news');
 mongoose.connect('mongodb://test:1234987@ds023490.mlab.com:23490/nathankou');
 
@@ -15,6 +17,10 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+// passport
+require('./config/passport');
+app.use(passport.initialize());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
