@@ -1,23 +1,40 @@
-<div class="page-header">
-	<h3>
-		<a ng-show="post.link" href="http://{{post.link}}" target="_blank">{{post.title}}</a>
-		<span ng-hide="post.link">{{post.title}}</span>
-	</h3>	
-</div>
-
-<div ng-repeat="comment in post.comments | orderBy: '-upvotes'">
-	<p><span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}} {{comment.body}}</p>
-	<p>by {{comment.author}}</p>
-</div>
-
-<form ng-submit="addComment()" ng-show="isLoggedIn()">
-	<h4>New Comment</h4>
-	<div class="form-group">
-		<input type="text" placeholder="Comment" ng-model="body"></input>
+<div class="row">
+	<div class="col-sm-3">
 	</div>
-	<button type="submit" class="btn btn-primary">Post</button>
-</form>
+	<div class="col-sm-6">
+		<div style="margin-bottom: 25px">
+			<h3>
+				<a ng-show="post.link" href="http://{{post.link}}" target="_blank">{{post.title}}</a>
+				<span ng-hide="post.link">{{post.title}}</span>
+			</h3>	
+		</div>
 
-<div ng-hide="isLoggedIn()">
-  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
+		<div style="margin-bottom: 25px">
+			<p>{{post.body}}</p>
+		</div>
+
+		<form ng-submit="addComment()" ng-show="isLoggedIn()" style="margin-bottom: 15px">
+			<div class="form-group">
+				<textarea type="text" placeholder="Comment" ng-model="body" style="width: 400px; height: 100px"></textarea>
+			</div>
+			<button type="submit" class="btn btn-default">Post</button>
+		</form>
+
+		<div ng-hide="isLoggedIn()">
+		  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
+		</div>
+
+		<div ng-repeat="comment in post.comments | orderBy: '-upvotes'">
+			<div style="display: inline-block; height: 30px; width: 50px">
+				<p><span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span> {{comment.upvotes}}
+				</p>
+			</div>
+
+			<div style="display: inline-block">
+				<p>{{comment.body}}</p>
+				<p>by {{comment.author}}</p>
+			</div>
+		</div>
+
+	</div>
 </div>

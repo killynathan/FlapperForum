@@ -1,31 +1,39 @@
-<div class="page-header text-center">
-	<h1>Pure & Simple</h1>
-</div>
+<style>
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+</style>
 
-<div ng-repeat="post in posts | orderBy: '-upvotes'" style="margin-top: 10px">
-	<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
-	{{post.upvotes}}
-	<a ng-show="post.link" href="http://{{post.link}}" target="_blank">{{post.title}}</a> 
-	<span ng-hide="post.link">{{post.title}}</span>
-	<span>
-		<a href="#/posts/{{post._id}}">comments</a>
-	</span>
-	<span ng-show="post.author">
-	  	posted by <a>{{post.author}}</a> |
-	</span>
-</div>
+<div class="row">
 
-<form ng-submit="addPost()" ng-show="isLoggedIn()" style="margin-top: 30px">
-	<h4>Add a new post</h4>
-	<div class="form-group">
-		<input type="text" placeholder="Title" ng-model="title" id="title"></input>
+	<div class="col-sm-3">
+		<div ng-hide="isLoggedIn()">
+		  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+		</div>
+
+		<button class="btn btn-default" ng-show="isLoggedIn()" style="margin: 10px auto"><a href="/#/submit">submit new post</a></button>
 	</div>
-	<div class="form-group">
-		<input type="text" placeholder="Link" ng-model="link"></input>
-	</div>
-	<button type="submit" class="btn btn-primary">Post</button>
-</form>
 
-<div ng-hide="isLoggedIn()">
-  <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+	<div class="col-sm-6">
+
+		<div ng-repeat="post in posts | orderBy: '-upvotes'" style="margin-top: 10px">
+			<div style="display: inline-block; height: 30px; width: 50px; position: relative; top: -20px">
+				<span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>{{post.upvotes}}
+			</div>
+			<div style="display: inline-block">
+				<a ng-show="post.link" href="http://{{post.link}}" target="_blank">{{post.title}}</a> 
+				<a href="#/posts/{{post._id}}" ng-hide="post.link">{{post.title}}</a>
+				<p><a href="#/posts/{{post._id}}" style="color: #337ab7">comments</a><p>
+			</div>
+			<span ng-show="post.author">
+			  	posted by <a>{{post.author}}</a>
+			</span>
+		</div>
+
+	</div>
+
 </div>

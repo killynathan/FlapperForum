@@ -1,0 +1,17 @@
+<div class="row">
+	<div style="width: 180px; margin: 0 auto">
+		<form ng-submit="addPost()">
+			<h4>Add a new post</h4>
+			<div class="form-group">
+				<input type="text" placeholder="Title" ng-model="title" id="title"></input>
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Link" ng-model="link"></input>
+			</div>
+			<div class="form-group">
+				<textarea type="text" placeholder="Body" ng-model="body" style="width: 178px"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Post</button>
+		</form>
+	</div>
+</div>

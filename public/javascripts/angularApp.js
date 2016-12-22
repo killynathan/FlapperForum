@@ -96,20 +96,24 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 	return auth;
 }]);
 
-app.controller('MainCtrl', ['$scope', 'posts', 'auth', function($scope, posts, auth) {
+app.controller('MainCtrl', ['$scope', 'posts', '$state', 'auth', function($scope, posts, $state, auth) {
 		$scope.isLoggedIn = auth.isLoggedIn;
 		$scope.posts = posts.posts;
 		$scope.title = '';
 		$scope.link = '';
+		$scope.body = '';
 		$scope.addPost = function() {
 			if ($scope.title !== '') {
 				posts.create({	
 					title: $scope.title, 
 					link: $scope.link,
+					body: $scope.body,
 					upvotes: 0
 				});
 				$scope.title = '';
 				$scope.link = '';
+				$scope.body = '';
+				$state.go('home');
 			}
 		};	
 		$scope.incrementUpvotes = function(post) {
@@ -204,6 +208,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				$state.go('home');
 			}
 		}]
+	}).state('/submit', {
+		url: '/submit',
+		templateUrl: 'partials/submit.ejs',
+		controller: 'MainCtrl'
 	});
 
 	$urlRouterProvider.otherwise('home');

@@ -1,21 +1,25 @@
-<div class="page-header">
-	<h1>Pure & Simple</h1>
-</div>
+<div class="row">
 
-<div ng-show="error" class="alert alert-danger row">
-	<span>{{error.message}}</span>
-</div>
+	<div style="width:240px; margin:0 auto">
 
-<form ng-submit="logIn()">
-	<h3>Log In</h3>
+		<div ng-show="error" class="alert alert-danger row">
+			<span>{{error.message}}</span>
+		</div>
 
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Username" ng-model="user.username"></input>
+		<form ng-submit="logIn()">
+			<h3>Log In</h3>
+
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Username" ng-model="user.username"></input>
+			</div>
+
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Log In</button>
+		</form>
+
 	</div>
 
-	<div class="form-group">
-		<input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
-	</div>
-
-	<button type="submit" class="btn btn-primary">Log In</button>
-</form>
+</div>
